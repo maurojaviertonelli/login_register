@@ -30,6 +30,13 @@ app.use(session({
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 
+/*AUTENTICACION
+app.post ('/auth', async (req, res) => {
+    const user = req.body.user;
+    const pass = req.body.pass;
+    let passwordHash = await bcryptjs.hash(pass,8)
+});*/
+
 const usersRoutes = require('./src/routes/usersRoutes');
 const indexRoutes = require('./src/routes/indexRoutes');
 app.use('/',usersRoutes)

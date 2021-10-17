@@ -36,7 +36,27 @@ const userControllers={
         })
        
 
-    }
+    },
+    loginProcess:async(req,res)=>{
+          let userToLogin=await db.User.findOne({ where: { user: req.body.user } });
+          if(userToLogin){
+            let isOkThePassword=bcryptjs.compareSync(req.body.pass,userToLogin.pass)
+              if(isOkThePassword){
+                delete userToLogin.pass;    //elimino la contraseña para q no me aparezca en mi profile
+                req.session.userLogged=userToLogin
+                return res.redirect('/users/profile/') //aca va la vista (hay q crearla)
+            }
+          }
+          return res.render("users/login",{
+            pageTitle:"Login",
+            errors:{
+              email:{
+                msg:'Las credenciales son inválidas'
+              }
+            }
+          });
+         
+      }
 }
 
 module.exports=userControllers
