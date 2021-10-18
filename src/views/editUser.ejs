@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/public/css/editUser.css">
+        <title>Edit User</title>
+    </head>
+    <body>
+        <div class="login-form"> 
+          <h2>Editar Perfil</h2>
+            <% //if(locals.errors){ %>
+                <% //for (let oneError in errors) { %>
+                    <p><%//=errors[oneError].msg%></p>
+            <% //} %>
+          <% //} %> 
+            <section class="section">
+                <form class="section form" action="edit?_method=put" method="POST" >
+                   
+                    <div class="campo">
+                        <label for="contrasena_Ant">Contraseña Actual</label>
+                        <input type="password" name="pass_previous" placeholder="Contraseña Anterior" value="<%=locals.oldData?oldData.pass_previous:null%>"/>
+                        <% if(locals.errors && errors.pass_previous) {%> 
+                            <p class="validationProfile"><%= errors.pass_previous.msg %></p> 
+                        <% } %> 
+                    </div>
+                    <div class="campo">
+                        <label for="confirmacion">Contraseña Nueva</label>
+                        <input type="password" name="pass_new" placeholder="Contraseña Nueva" value="<%=locals.oldData?oldData.pass_new:null%>"/>
+                        <% if(locals.errors && errors.pass_new) {%> 
+                            <p class="validationProfile"><%= errors.pass_new.msg %></p> 
+                        <% } %> 
+                    </div>
+                    <div class="campo">
+                        <label for="confirmacion2">Repetir Contraseña Nueva</label>
+                        <input type="password" name="pass_new" placeholder="Confirmar Contraseña Nueva" value="<%=locals.oldData?oldData.pass_new:null%>"/>
+                        <% if(locals.errors && errors.pass_new) {%> 
+                            <p class="validationProfile"><%= errors.pass_new.msg %></p>
+                        <% } %> 
+                    </div>
+                    <div class="campo">
+                        <label for="foto-perfil">Foto de Perfil</label>
+                        <input type="file" class="btn-register" name="img_profile" placeholder="Ingresa tu foto de perfil" accept=".jpg, .png"/>
+                    </div>
+
+                    <br>
+                                    
+                    <button type="submit" class="btn-login">Guardar</button>    
+                </form>
+            </div>
+            </section>
+                            
+    </body>
+
+</html>

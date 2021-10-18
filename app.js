@@ -3,6 +3,7 @@ const app = express();
 
 
 
+
 app.use('/public', express.static(__dirname + '/public'));
 app.use('/public', express.static('/public'));
 
@@ -30,14 +31,10 @@ app.use(session({
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 
-/*AUTENTICACION
-app.post ('/auth', async (req, res) => {
-    const user = req.body.user;
-    const pass = req.body.pass;
-    let passwordHash = await bcryptjs.hash(pass,8)
-});*/
 
 const usersRoutes = require('./src/routes/usersRoutes');
 const indexRoutes = require('./src/routes/indexRoutes');
+const apiRoutes = require('./src/routes/apiRoutes');
 app.use('/',usersRoutes)
 app.use('/',indexRoutes)
+app.use('/api', apiRoutes)
