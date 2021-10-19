@@ -59,11 +59,45 @@ const userControllers={
         req.session.destroy();
         return res.redirect('/')
       },
-      edit: (req, res) => {
-        res.render("editUser", {
-          pageTitle: "Editar",
+      create: (req, res) => {
+        res.render('create', {
+            pageTitle: 'Crear',
+            
         });
-      },
+    },
+      createPost:async(req,res)=>{
+        const user = req.body.user;
+        const name = req.body.name;
+        const rol = req.body.rol;
+        const pass = req.body.pass;
+        let passwordHash = await bcryptjs.hash(pass,8)
+        let nombreImagen="/public/img/users_img/"+req.file.filename
+        db.User.create({
+            user: user,
+            name: name,
+            rol: rol,
+            pass: passwordHash,
+            avatar: nombreImagen
+        })
+        .then(()=>{
+            res.render('register',{
+                alert:true,
+                alertTitle: "Registration",
+                alertMessage:"¡Successful Registration",
+                alertIcon:'success',
+                showConfirmButton:false,
+                timer: 1500,
+                ruta:''
+            })
+        })
+        
+        .catch(err=>{
+            console.error(err)
+        })
+
+        
+    return res.redirect("/");
+  },
       editPut: (req, res) => {
         const resultValidation = validationResult(req);
         if (resultValidation.errors.length > 0) {
@@ -82,11 +116,13 @@ const userControllers={
         const rol = req.body.rol;
         const pass = req.body.pass;
         let passwordHash = await bcryptjs.hash(pass,8)
+        let nombreImagen="/public/img/users_img/"+req.file.filename
         db.User.create({
             user: user,
             name: name,
             rol: rol,
-            pass: passwordHash
+            pass: passwordHash,
+            avatar: nombreImagen
         })
         .then(()=>{
             res.render('register',{
@@ -103,7 +139,9 @@ const userControllers={
         .catch(err=>{
             console.error(err)
         })
-       
+
+        
+    return res.redirect("/");   
 
     },
     loginProcess:async(req,res)=>{

@@ -10,7 +10,7 @@
 <body>
     <div class="register-form">
         <h1>Crear Usuario</h1>
-        <form method="POST" action="create" enctype="multipart/form-data">
+        <form method="POST" action="/create" enctype="multipart/form-data">
             <label for="user">User</label>
             <input type="text" name="user" required>
             
@@ -25,6 +25,13 @@
 
             <label for="pass">Password</label>
             <input type="password" name="pass" required>
+
+            <label for="avatar">Su Avatar</label>
+            <input type="file" name="avatar" accept=".gif,.jpg,.jpeg,.png" >
+                        <% if(locals.errors && errors.avatar) { %>
+                            <p class="validationProfile"><%= errors.avatar.msg %></p>  
+                            <% } %> 
+                            <img src="/public/img/Avatar.svg" height="40px" alt="imagen avatar usuario" id="avatar"/>
 
 
             <div style="display: inline;">

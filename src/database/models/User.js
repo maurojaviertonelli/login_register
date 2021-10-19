@@ -21,6 +21,10 @@ module.exports=(sequelize, dataTypes) => {
         rol:{
             type:dataTypes.CHAR,
             allowNull: false
+        },
+        avatar:{
+            type:dataTypes.CHAR,
+            allowNull: false
         }
         
     }
