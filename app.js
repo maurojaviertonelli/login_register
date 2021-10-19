@@ -29,7 +29,7 @@ app.use(session({
     saveUninitialized:true
 }))
 
-app.use(userLoggedMiddleware);
+//app.use(userLoggedMiddleware);
 
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
