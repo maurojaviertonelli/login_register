@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const userLoggedMiddleware = require('./src/middlewares/userLoggedMiddleware');
 
 
 
@@ -28,8 +29,12 @@ app.use(session({
     saveUninitialized:true
 }))
 
+app.use(userLoggedMiddleware);
+
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
+
+
 
 
 const usersRoutes = require('./src/routes/usersRoutes');
