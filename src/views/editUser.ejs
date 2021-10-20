@@ -16,7 +16,7 @@
             <% //} %>
           <% //} %> 
             <section class="section">
-                <form class="section form" action="edit?_method=put" method="POST" >
+                <form class="section form" action="editUser?_METHOD=PUT" method="POST" >
                    
                     <div class="campo">
                         <label for="contrasena_Ant">Contraseña Actual</label>
@@ -34,7 +34,7 @@
                     </div>
                     <div class="campo">
                         <label for="confirmacion2">Repetir Contraseña Nueva</label>
-                        <input type="password" name="pass_new" placeholder="Confirmar Contraseña Nueva" value="<%=locals.oldData?oldData.pass_new:null%>"/>
+                        <input type="password" name="pass_new2" placeholder="Confirmar Contraseña Nueva" value="<%=locals.oldData?oldData.pass_new:null%>"/>
                         <% if(locals.errors && errors.pass_new) {%> 
                             <p class="validationProfile"><%= errors.pass_new.msg %></p>
                         <% } %> 
@@ -46,7 +46,10 @@
 
                     <br>
                                     
-                    <button type="submit" class="btn-login">Guardar</button>    
+                    <button type="submit" class="btn-login">Guardar</button>
+                    <div style="display: inline;">
+                        <a href="/" class="btn-cancel">Cancelar</a> 
+                    </div>    
                 </form>
             </div>
             </section>

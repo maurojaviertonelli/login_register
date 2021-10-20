@@ -1,5 +1,8 @@
 const bcryptjs=require('bcryptjs')
 const db = require('../database/models');
+const { validationResult } = require("express-validator");
+const fs = require("fs");
+const path = require("path");
 
 const userControllers={
     login:(req,res)=>{
@@ -16,43 +19,7 @@ const userControllers={
     
         });
       },
-      /*create: (req, res) => {
-          res.render("create", {
-            pageTitle: "CreateUser",
-            id: req.params.id,
-            user:req.session.userLogged
-      
-          });
-        },
-        createPost:async(req,res)=>{
-            const user = req.body.user;
-            const name = req.body.name;
-            const rol = req.body.rol;
-            const pass = req.body.pass;
-            let passwordHash = await bcryptjs.hash(pass,8)
-            db.User.create({
-                user: user,
-                name: name,
-                rol: rol,
-                pass: passwordHash
-            })
-            .then(()=>{
-                res.render('register',{
-                    alert:true,
-                    alertTitle: "Registration",
-                    alertMessage:"¡Successful Registration",
-                    alertIcon:'success',
-                    showConfirmButton:false,
-                    timer: 1500,
-                    ruta:''
-                })
-            })
-            .catch(err=>{
-                console.error(err)
-            })
-           
-    
-        },*/
+     
       
       
       logout:(req,res)=>{                          //metodo del logout
@@ -98,13 +65,22 @@ const userControllers={
         
     return res.redirect("/");
   },
+  edit: (req, res) => {
+    
+    res.render("editUser", {
+      pageTitle: "Editar",
+    });
+  },
       editPut: (req, res) => {
+        
         const resultValidation = validationResult(req);
+        console.log(req.body)
         if (resultValidation.errors.length > 0) {
           return res.render("editUser", {
             errors: resultValidation.mapped(),
             pageTitle: "Editar",
             oldData: req.body
+            
           });
         }else{
           return res.redirect("/")
@@ -141,7 +117,7 @@ const userControllers={
         })
 
         
-    return res.redirect("/");   
+    return res.redirect("/login");   
 
     },
     loginProcess:async(req,res)=>{

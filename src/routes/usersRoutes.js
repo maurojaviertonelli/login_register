@@ -20,6 +20,7 @@ const multerDS = multer.diskStorage({
 });
 const uploadFile=multer({storage:multerDS});
 
+
 //agrego express-validator//
 const{body}=require('express-validator');
 const { Router } = require('express');
@@ -47,6 +48,18 @@ const validationFormSignUp=[
     })
 ]
 
+const validationForm=[
+    body('name').notEmpty().withMessage('*Ingrese su nombre'),
+    body('pass').isLength({min:5,max:15}).withMessage('*Ingrese contraseña válida (entre 5 y 15 caracteres)'),
+    body('user')
+        .notEmpty().withMessage('*Debe ingresar su casilla de correo electrónico').bail()
+        .isEmail().withMessage('*Ingrese un email válido'),
+    body('pass_previous').isLength({min:5,max:15}).withMessage('*Ingrese contraseña válida'),
+    body('pass_new').isLength({min:5,max:15}).withMessage('*Ingrese contraseña válida'),
+    body('pass_new2').isLength({min:5,max:15}).withMessage('*Ingrese contraseña válida'),
+       
+]
+
 router.get('/login',guestMiddleware,usersControllers.login)
 router.post('/login',usersControllers.loginProcess)
 //register routes
@@ -60,8 +73,8 @@ router.post('/create',uploadFile.single('avatar'),usersControllers.createPost);
 //--logout--//
 router.get('/logout',usersControllers.logout);
 // edit routes //
-//router.get('/editUser',usersControllers.edit);
-//router.put('/editUser',usersControllers.editPut);
+router.get('/editUser',usersControllers.edit);
+router.put('/editUser',validationForm,usersControllers.editPut);
 // api //
 //router.get('/',APIusers.users);
 //router.get('/:id',APIusers.usersDetail);

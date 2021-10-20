@@ -10,7 +10,7 @@
 <body>
     <div class="register-form">
         <h1>Registration</h1>
-        <form action="/register" method="post">
+        <form action="/register" method="POST" enctype="multipart/form-data">
             <label for="user">User</label>
             <input type="text" name="user" placeholder="Ingresar Email" value="<%=locals.oldData?oldData.user:null%>" required/> 
             <span class = "error" id = "errorUser"></span>
