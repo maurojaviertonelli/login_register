@@ -9,8 +9,9 @@ const APIController = {
                 const newUsers = users.map(user => {
                     const newUser = {}
                     newUser.id = user.id;
-                    newUser.name = user.user_name;
-                    newUser.email = user.user_email;
+                    newUser.name = user.name;
+                    newUser.email = user.user;
+                    newUser.avatar = user.avatar;
                     newUser.detail = `/users/detail/${user.id}`;
                     return newUser;
                 })

@@ -66,15 +66,13 @@ const userControllers={
     return res.redirect("/");
   },
   edit: (req, res) => {
-    
     res.render("editUser", {
       pageTitle: "Editar",
     });
   },
       editPut: (req, res) => {
-        
+        console.log(req.file);
         const resultValidation = validationResult(req);
-        console.log(req.body)
         if (resultValidation.errors.length > 0) {
           return res.render("editUser", {
             errors: resultValidation.mapped(),
@@ -83,7 +81,15 @@ const userControllers={
             
           });
         }else{
-          return res.redirect("/")
+          db.User.update(
+            {
+              pass:req.body.pass_new,
+              avatar: "/public/img/users_img/"+req.file.filename
+            },
+            {
+              where:{id:req.session.userLogged.id}
+            }
+          )
         }
       },
     registerPost:async(req,res)=>{
@@ -139,6 +145,9 @@ const userControllers={
             }
           });
          
+      },
+      getUser:(req,res)=>{
+        res.render('edit')
       }
 }
 

@@ -78,5 +78,6 @@ router.put('/editUser',validationForm,usersControllers.editPut);
 // api //
 //router.get('/',APIusers.users);
 //router.get('/:id',APIusers.usersDetail);
+router.get('/users',usersControllers.getUser);
 
 module.exports=router
