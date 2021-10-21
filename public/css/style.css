@@ -4,8 +4,16 @@ body{
     margin: auto;
     text-align: center;
   }
-
   
+  .bg-animated {
+    background-image: url("../img/fondo.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100%;
+    background-attachment: fixed;
+    
+}
+
   
   /* Login form */
   .login-form, .contenedor {
@@ -14,8 +22,9 @@ body{
   }
   .login-form h1 {
     text-align: center;
-    color:midnightblue ;
+    color:black ;
     font-size: 28px;
+    font-family:sans-serif;
     padding: 70px 0 10px 0;
   }
   .login-form input[type="password"],
@@ -172,15 +181,16 @@ body{
     margin: 0 auto;
     padding: 0px 20px 60px 20px;
     margin-top: 35px;
-    font-family: roboto;  
+    font-family:sans-serif;  
     text-align: left !important;
    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); 
   }
   
   .register-form h1 {
     text-align: left;
-    color:midnightblue ;
+    color:black;
     font-size: 22px;
+    font-family:sans-serif;
     padding: 70px 0 10px 0;
   }
   .register-form input[type="password"],
@@ -219,4 +229,13 @@ body{
   }
   .select-css option{
       font-weight: normal;
+  }
+
+  h1{
+    color: black;
+    width: 50%;
+    margin-left: 35%;
+    margin-right: 25%;
+    font-family:sans-serif;
+
   }

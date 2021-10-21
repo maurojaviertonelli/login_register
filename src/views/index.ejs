@@ -1,17 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<!--<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital House</title>
     <link rel="stylesheet" href="public/css/style.css">
+</head>-->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="/public/css/index.css" />
+
+    <title>Home</title>
 </head>
+
+<body class="bg-animated">
 <header>
-    <a href="./login" class="sesion">Iniciar sesión</a>
-        <a href="./register" class="registro">Registrarme</a>
+    <div class="btn-cont">
+        <form action="./login">
+            <button type="submit" value="Login"class="pulse">Iniciar sesión </button>
+        </form>
+        <form action="./register">
+            <button type="submit" value="Login"class="pulse">Registrarme </button>
+        </form>
+    
+    </div>
 </header>
 <body>
-    <h5>SISTEMA DE PANELES</h5>
+    <br>
+    <h1>SISTEMA DE PANELES</h1>
+
+<br>
+
+<h3>DESCRIPCIÓN RÁPIDA DEL PROYECTO</h3>
+<div class="descripcion">
+    <p>Un sistema desarrollado en el entorno de NodeJS en el que llevamos registros de los usuarios registrados 
+        desde cualquier perfil administrador, con funcionalidades para crear, editar y eliminar. 
+        También cuenta con la opción para cargar la imagén de perfil de cada usuario gracias al middleware Multer
+        para express y NodeJS. Gracias a este podemos manipular fácilmente el multipart/form-data cuando los usuarios
+        cargan archivos en sus registros, en este caso del tipo file al cual le agregamos las aceptaciones en formatos
+        de imágenes como jpeg, jpg o png. 
+        Y por último y no menos importante se implemento el sistema de validaciones gracias a express-validator que nos 
+        permite desde el back implementar lógica para envíar mensajes de errores cuando un usuario no ingresa los datos 
+        que esperamos y creemos necesarios.   
+    
+    </p>
+</div>
 </body>
+<footer>
+    <div class="footer">
+
+        <h5>Para más info podes comunicarte al 0800 - 444 - 2000 (login) 
+            o visitanos en nuestra web oficial www.registrateya.com.ar</h5>
+
+    </div>
+</footer>
 </html>

@@ -1,0 +1,138 @@
+header{
+    background-color:black;
+    border:double beige;
+    box-shadow: 10px 5px 5px black;
+    opacity: 75%;
+    margin-top: 0;
+    padding: 2%;
+}
+
+body{
+    margin-top:0px;
+    color: #1a202c;
+    text-align: left;
+    background-color: #e2e8f0;    
+}
+.main-body {
+    padding: 15px;
+    margin-top: 200px;
+}
+
+
+.bg-animated {
+    background-image: url("../img/fondo.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100%;
+    background-attachment: fixed;
+    
+}
+
+h1{
+    color: black;
+    width: 50%;
+    margin-left: 35%;
+    margin-right: 25%;
+    font-family:sans-serif;
+
+}
+
+h3{
+    color: black;
+    width: 50%;
+    margin-left: 32%;
+    margin-right: 25%;
+    font-family:sans-serif;
+}
+
+p {
+    color: black;
+    font-weight: bold;
+    text-shadow: 1px 1px 4px #87cce7a3;
+    border:double beige;
+    box-shadow: 10px 5px 5px black;
+    border-radius:20px;
+    width: 50%;
+    margin-left: 20%;
+    margin-right: 25%;
+    text-align: center, justify;
+    display:flex;
+    box-sizing:content-box;
+    padding: 5%;
+    background-color: white;
+    opacity: 55%;
+    font-family:sans-serif;
+
+
+}
+.descripcion{
+    box-sizing:content-box;
+    flex:auto;
+    
+    
+}
+
+.pulse:hover,
+.pulse:focus {
+  -webkit-animation: pulse 1s;
+          animation: pulse 1s;
+  box-shadow: 0 0 0 2em rgba(255, 255, 255, 0);
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 var(--hover);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 var(--hover);
+  }
+}
+
+.pulse {
+    --color: black;
+    --hover: red;
+  }
+  button {
+    background: none;
+    border: 1px solid;
+    font: inherit;
+    line-height: 1;
+    margin: 0.5em;
+    padding: 1em 2em;
+    border-radius: 10px;
+    
+  }
+
+  button {
+    color: grey;
+    -webkit-transition: 0.50s;
+    transition: 0.50s;
+  }
+  button:hover, button:focus {
+    border-color: red;
+    color: red;
+  }
+
+  .btn-cont{
+      
+      text-align:right;
+  }
+
+  footer{
+    background-color: black;
+    border:double beige;
+    box-shadow: 10px 5px 5px black;
+    opacity: 75%;
+  }
+
+  h5{
+      color: whitesmoke;
+      text-align: center;
+      font-family:sans-serif;
+      font-size: 20px;
+      padding: 5%;
+      margin: auto;
+  }
