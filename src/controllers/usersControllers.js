@@ -66,7 +66,6 @@ const userControllers={
     return res.redirect("/");
   },
   edit: (req, res) => {
-    
     res.render("editUser", {
       pageTitle: "Editar",
     });
@@ -90,7 +89,15 @@ const userControllers={
             
           });
         }else{
-          return res.redirect("/")
+          db.User.update(
+            {
+              pass:req.body.pass_new,
+              avatar: "/public/img/users_img/"+req.file.filename
+            },
+            {
+              where:{id:req.session.userLogged.id}
+            }
+          )
         }
       },
     registerPost:async(req,res)=>{
@@ -146,6 +153,12 @@ const userControllers={
             }
           });
          
+      },
+      getUsers:(req,res)=>{
+        res.render('listUsers')
+      },
+      getUser:(req,res)=>{
+        res.render('edit');
       }
 }
 
