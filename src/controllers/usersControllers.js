@@ -71,10 +71,17 @@ const userControllers={
       pageTitle: "Editar",
     });
   },
-      editPut: (req, res) => {
-        
+      editPut: async(req, res) => {
+        const name = req.body.name;
+        const pass = req.body.pass;
+        let passwordHash = await bcryptjs.hash(pass,8)
+        let nombreImagen="/public/img/users_img/"+req.file.filename
+        db.User.update({
+            pass: passwordHash,
+            avatar: nombreImagen
+        })
         const resultValidation = validationResult(req);
-        console.log(req.body)
+        
         if (resultValidation.errors.length > 0) {
           return res.render("editUser", {
             errors: resultValidation.mapped(),
@@ -130,7 +137,7 @@ const userControllers={
                 return res.redirect('profile') 
             }
           }
-          return res.render("users/login",{
+          return res.render("login",{
             pageTitle:"Login",
             errors:{
               email:{

@@ -9,15 +9,15 @@
 </head>
 <body>
     <div class="register-form">
-        <h1>Registration</h1>
+        <h1>Registrate</h1>
         <form action="/register" method="POST" enctype="multipart/form-data">
-            <label for="user">User</label>
-            <input type="text" name="user" placeholder="Ingresar Email" value="<%=locals.oldData?oldData.user:null%>" required/> 
+            <label for="user">Email</label>
+            <input type="email" name="user" placeholder="Ingresar Email" value="<%=locals.oldData?oldData.user:null%>" required/> 
             <span class = "error" id = "errorUser"></span>
                         <% if(locals.errors && errors.user) {%>
                             <p class="validationProfile"><%= errors.user.msg %></p> 
                             <% } %>
-            <label for="name">Full Name</label>
+            <label for="name">Nombre y Apellido</label>
             <input type="text" name="name" placeholder="Ingresar nombre y apellido completos" value="<%=locals.oldData?oldData.name:null%>" required>
             <span class = "error" id = "errorName"></span>
                         <% if(locals.errors && errors.name) {%>
@@ -29,7 +29,7 @@
                 <option value="data entry">Data entry</option>
             </select>
 
-            <label for="pass">Password</label>
+            <label for="pass">Contraseña</label>
             <input type="password" name="pass" placeholder= "Ingresar contraseña" value="<%=locals.oldData?oldData.pass:null%>" required>
             <span class = "error" id = "errorPassword"></span>
                         <% if(locals.errors && errors.pass) {%>

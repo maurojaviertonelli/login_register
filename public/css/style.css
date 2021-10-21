@@ -4,6 +4,8 @@ body{
     margin: auto;
     text-align: center;
   }
+
+  
   
   /* Login form */
   .login-form, .contenedor {
@@ -182,6 +184,7 @@ body{
     padding: 70px 0 10px 0;
   }
   .register-form input[type="password"],
+  .register-form input[type="email"],
   .register-form input[type="text"] {
     width: 100%;
     padding: 15px;

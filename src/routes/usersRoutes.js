@@ -7,6 +7,9 @@ const APIusers = require('../controllers/apiControllers');
 const usersControllers = require('../controllers/usersControllers')
 const guestMiddleware = require('../middlewares/guestMiddleware');
 const authMiddleware = require('../middlewares/authMiddleware');
+const validationFormSignUp = require('../middlewares/validationFormSignUpMiddleware');
+const validationForm = require('../middlewares/validationFormMiddleware');
+
 //const userLoggedMiddleware = require ('../middlewares/userLoggedMiddleware');
 //Configuración MULTER para cargar imagenes en la vista
 const multerDS = multer.diskStorage({
@@ -20,45 +23,6 @@ const multerDS = multer.diskStorage({
 });
 const uploadFile=multer({storage:multerDS});
 
-
-//agrego express-validator//
-const{body}=require('express-validator');
-const { Router } = require('express');
-
-//Validacion para el registro hacer lo mismo q con multer crear archivo en middleware de validacion y luego requerirlo aca//
-const validationFormSignUp=[
-    body('user')
-    .notEmpty().withMessage('*Debe ingresar su casilla de correo electrónico').bail()
-    .isEmail().withMessage('*Ingrese un email válido'),
-    body('name').notEmpty().withMessage('*Ingrese su nombre y apellido completos'),
-    body('pass').isLength({min:5,max:15}).withMessage('*Ingrese contraseña válida (entre 5 y 15 caracteres)'),
-    body('avatar').custom((value,{ req })=>{
-        let file=req.file;
-        let acceptedExtensions=['.png', '.webp', '.jpg'];
-        if (!file){
-            throw new Error('*Debe seleccionar su avatar');
-        }else{
-            let fileExtension=path.extname(file.originalname)
-            if(!acceptedExtensions.includes(fileExtension)){
-                throw new Error(`Las extensiones de archivos permitidas son ${acceptedExtensions.join(', ')}`);
-            }
-        }
-       
-        return true;
-    })
-]
-
-const validationForm=[
-    body('name').notEmpty().withMessage('*Ingrese su nombre'),
-    body('pass').isLength({min:5,max:15}).withMessage('*Ingrese contraseña válida (entre 5 y 15 caracteres)'),
-    body('user')
-        .notEmpty().withMessage('*Debe ingresar su casilla de correo electrónico').bail()
-        .isEmail().withMessage('*Ingrese un email válido'),
-    body('pass_previous').isLength({min:5,max:15}).withMessage('*Ingrese contraseña válida'),
-    body('pass_new').isLength({min:5,max:15}).withMessage('*Ingrese contraseña válida'),
-    body('pass_new2').isLength({min:5,max:15}).withMessage('*Ingrese contraseña válida'),
-       
-]
 
 router.get('/login',guestMiddleware,usersControllers.login)
 router.post('/login',usersControllers.loginProcess)
@@ -74,7 +38,7 @@ router.post('/create',uploadFile.single('avatar'),usersControllers.createPost);
 router.get('/logout',usersControllers.logout);
 // edit routes //
 router.get('/editUser',usersControllers.edit);
-router.put('/editUser',validationForm,usersControllers.editPut);
+router.put('/editUser/:id',validationForm,usersControllers.editPut);
 // api //
 //router.get('/',APIusers.users);
 //router.get('/:id',APIusers.usersDetail);
