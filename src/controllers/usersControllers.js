@@ -146,8 +146,11 @@ const userControllers={
           });
          
       },
+      getUsers:(req,res)=>{
+        res.render('listUsers')
+      },
       getUser:(req,res)=>{
-        res.render('edit')
+        res.render('edit');
       }
 }
 
